@@ -83,24 +83,24 @@ let slider = document.querySelector('.slider'),
 
     if (isSwipe) {
       // запрет ухода влево на первом слайде
-      if (slideIndex === 0) {
-        if (posInit < posX1) {
-          setTransform(transform, 0);
-          return;
-        } else {
-          allowSwipe = true;
-        }
-      }
+    //   if (slideIndex === 0) {
+    //     if (posInit < posX1) {
+    //       setTransform(transform, 0);
+    //       return;
+    //     } else {
+    //       allowSwipe = true;
+    //     }
+    //   }
 
       // запрет ухода вправо на последнем слайде
-      if (slideIndex === --slides.length) {
-        if (posInit > posX1) {
-          setTransform(transform, lastTrf);
-          return;
-        } else {
-          allowSwipe = true;
-        }
-      }
+    //   if (slideIndex === --slides.length) {
+    //     if (posInit > posX1) {
+    //       setTransform(transform, lastTrf);
+    //       return;
+    //     } else {
+    //       allowSwipe = true;
+    //     }
+    //   }
 
       // запрет протаскивания дальше одного слайда
       if (posInit > posX1 && transform < nextTrf || posInit < posX1 && transform > prevTrf) {
