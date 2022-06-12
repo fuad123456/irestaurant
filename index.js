@@ -82,6 +82,28 @@ let slider = document.querySelector('.slider'),
     }
 
     if (isSwipe) {
+		if (slideIndex === 0) {
+			if (posInit < posX1) {
+			  setTransform(transform, 0);
+			  return;
+			} else {
+			  allowSwipe = true;
+			}
+		  }
+	
+		  // запрет ухода вправо на последнем слайде
+		  if (slideIndex === --slides.length) {
+			if (posInit > posX1) {
+				let track=document.querySelector('.slider-track');
+				let item = createItem();
+				track.appendChild(item);
+				swipeStart();
+			  setTransform(transform, lastTrf);
+			  return;
+			} else {
+			  allowSwipe = true;
+			}
+		  }
       // запрет протаскивания дальше одного слайда
     //   if (posInit > posX1 && transform < nextTrf || posInit < posX1 && transform > prevTrf) {
     //     reachEdge();
@@ -148,16 +170,19 @@ sliderTrack.addEventListener('transitionend', () => allowSwipe = true);
 slider.addEventListener('touchstart', swipeStart);
 slider.addEventListener('mousedown', swipeStart);
 
-arrows.addEventListener('click', function() {
-  let target = event.target;
 
-  if (target.classList.contains('next')) {
-    slideIndex++;
-  } else if (target.classList.contains('prev')) {
-    slideIndex--;
-  } else {
-    return;
-  }
-
-  slide();
-});
+function createItem (){
+	let item = document.createElement('div');
+  item.classList.add('slide');
+  let box= document.createElement('div');
+  box.classList.add('img-box');
+  let img = document.createElement('img');
+  img.src = 'img/3.jpg';
+  box.appendChild(img);
+  item.appendChild(box);
+  let title = document.createElement('div')
+  title.classList.add('title');
+  title.innerHTML = 'title 5';
+  item.appendChild(title);
+  return item;
+}
