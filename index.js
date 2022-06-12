@@ -20,7 +20,7 @@ let slider = document.querySelector('.slider'),
   nextTrf = 0,
   prevTrf = 0,
   lastTrf = --slides.length * slideWidth,
-  posThreshold = slides[0].offsetWidth * 0.35,
+  posThreshold = slides[0].offsetWidth * 0.2,
   trfRegExp = /([-0-9.]+(?=px))/,
   getEvent = function() {
     return (event.type.search('touch') !== -1) ? event.touches[0] : event;
@@ -82,32 +82,11 @@ let slider = document.querySelector('.slider'),
     }
 
     if (isSwipe) {
-      // запрет ухода влево на первом слайде
-    //   if (slideIndex === 0) {
-    //     if (posInit < posX1) {
-    //       setTransform(transform, 0);
-    //       return;
-    //     } else {
-    //       allowSwipe = true;
-    //     }
-    //   }
-
-      // запрет ухода вправо на последнем слайде
-    //   if (slideIndex === --slides.length) {
-    //     if (posInit > posX1) {
-    //       setTransform(transform, lastTrf);
-    //       return;
-    //     } else {
-    //       allowSwipe = true;
-    //     }
-    //   }
-
       // запрет протаскивания дальше одного слайда
       if (posInit > posX1 && transform < nextTrf || posInit < posX1 && transform > prevTrf) {
         reachEdge();
         return;
       }
-
       // двигаем слайд
       sliderTrack.style.transform = `translate3d(${transform - posX2}px, 0px, 0px)`;
     }
