@@ -8,6 +8,7 @@ body{
 	font-size: 16px;
 	color: #333;
 	background: #fafafa;
+
 }
 header{
 	height: 210px;
@@ -62,6 +63,20 @@ header{
   object-fit: cover;
   pointer-events: none;
   border-radius: 20px;
+}
+a{
+	/* pointer-events: none; */
+	/* height: 50px; */
+	/* user-select: none; */
+}
+/* a .img-box{
+	pointer-events: auto;
+}
+a .img-box img{
+	pointer-events: none;
+} */
+.pn{
+	pointer-events: none;
 }
 .slider-list {
   height: 200px;

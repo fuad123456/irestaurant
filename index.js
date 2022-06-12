@@ -186,3 +186,29 @@ function createItem (){
   item.appendChild(title);
   return item;
 }
+// let link =document.querySelectorAll('a');
+// document.querySelectorAll('a').forEach(anchor => {
+//     anchor.addEventListener('click', function (e) {
+//         e.preventDefault();
+//         document.querySelector(this.getAttribute('href')).scrollIntoView({
+//             behavior: 'smooth',
+// 			block: 'start'
+//         });
+//     });
+// });
+let link = document.querySelector('a');
+link.addEventListener('click', function (e) {
+	console.log('click');
+})
+link.addEventListener('mousedown', function (e) {
+	setTimeout(() => {
+	link.classList.add('pn');
+	}, 80);
+})
+window.addEventListener('mouseup', function (e) {
+	this.setTimeout(function () {
+
+	link.classList.remove('pn');
+	}, 100);
+	console.log('mousedown');
+})
