@@ -83,10 +83,10 @@ let slider = document.querySelector('.slider'),
 
     if (isSwipe) {
       // запрет протаскивания дальше одного слайда
-      if (posInit > posX1 && transform < nextTrf || posInit < posX1 && transform > prevTrf) {
-        reachEdge();
-        return;
-      }
+    //   if (posInit > posX1 && transform < nextTrf || posInit < posX1 && transform > prevTrf) {
+    //     reachEdge();
+    //     return;
+    //   }
       // двигаем слайд
       sliderTrack.style.transform = `translate3d(${transform - posX2}px, 0px, 0px)`;
     }
