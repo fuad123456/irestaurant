@@ -34,7 +34,7 @@ header{
 }
 .slider {
   position: relative;
-  width: 80em;
+  width: 40em;
   height: 200px;
 
   /* Чтобы во время перетаскивания слайда ничего не выделить внутри него */
