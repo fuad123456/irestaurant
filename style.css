@@ -11,31 +11,28 @@ body{
 
 }
 header{
-	height: 210px;
-	width: 100%;
+	height: 250px;
+	width: inherit;
+	margin: 0 auto;
+}
+.container{
+	border: 1px solid #e5e5e5;
 }
 .header{
-	max-width: 1295px;
-    margin-right: auto;
-    margin-left: auto;
-	width: 100%;
-	position: fixed;
 	top: 0;
-	height: 200px;
 	background: #fff;
 	box-shadow: 0 0 5px #ccc;
+	position: fixed;
 	z-index: 100;
-	/* margin-bottom: 200px; */
 }
 .wrapper{
-	/* position: fixed; */
-	margin: 0 auto;
-	width: 100%;
-	max-width: 700px;
-	padding: 0 15px;
 	overflow: hidden;
 	height: 200px;
-	z-index: 5;
+}
+.dd{
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .slider {
   position: relative;
@@ -53,28 +50,19 @@ header{
 чтобы они не перетаскивались мышью */
 
 .img-box{
-	width: auto;
+	width: 150px;
 	height: 100px;
 	border-radius: 20%;
 }
 .img-box img {
-  width:auto;
+  /* width:auto; */
+  width: 150px;
   height: 100px;
   object-fit: cover;
   pointer-events: none;
   border-radius: 20px;
 }
-a{
-	/* pointer-events: none; */
-	/* height: 50px; */
-	/* user-select: none; */
-}
-/* a .img-box{
-	pointer-events: auto;
-}
-a .img-box img{
-	pointer-events: none;
-} */
+
 .pn{
 	pointer-events: none;
 }
@@ -138,7 +126,7 @@ a .img-box img{
 	object-fit: cover;
 }
 .col-header{
-	font-size: 48px;
+	font-size: 24px;
 	color: #000;
 	text-align: center;
 }
@@ -146,4 +134,8 @@ a .img-box img{
 	.img-del{
 		width: 8rem;
 	}
+}
+.r{
+	width: 100%;
+
 }
