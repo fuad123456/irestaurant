@@ -192,19 +192,19 @@ function createItem (){
 //         });
 //     });
 // });
-let link = document.querySelector('a');
-link.addEventListener('click', function (e) {
-	console.log('click');
-})
-link.addEventListener('mousedown', function (e) {
-	setTimeout(() => {
-	link.classList.add('pn');
-	});
-})
-window.addEventListener('mouseup', function (e) {
-	this.setTimeout(function () {
+let link = document.querySelectorAll('.slide-link');
 
-	link.classList.remove('pn');
-	}, );
-	console.log('mousedown');
+function addPn(){
+	setTimeout(() => {
+		this.classList.add('pn');
+		},70);
+}
+function remPn(){
+	link.forEach(item => {
+		item.classList.remove('pn');
+	});
+}
+link.forEach(anchor => {
+	anchor.addEventListener('mousedown', addPn);
 })
+window.addEventListener('mouseup', remPn);
