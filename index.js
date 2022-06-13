@@ -199,12 +199,12 @@ link.addEventListener('click', function (e) {
 link.addEventListener('mousedown', function (e) {
 	setTimeout(() => {
 	link.classList.add('pn');
-	}, 80);
+	});
 })
 window.addEventListener('mouseup', function (e) {
 	this.setTimeout(function () {
 
 	link.classList.remove('pn');
-	}, 100);
+	}, );
 	console.log('mousedown');
 })
