@@ -3,8 +3,6 @@ let slider = document.querySelector('.slider'),
   sliderTrack = slider.querySelector('.slider-track'),
   slides = slider.querySelectorAll('.slide'),
   arrows = slider.querySelector('.slider-arrows'),
-  prev = arrows.children[0],
-  next = arrows.children[1],
   slideWidth = slides[0].offsetWidth,
   slideIndex = 0,
   posInit = 0,
@@ -31,8 +29,6 @@ let slider = document.querySelector('.slider'),
     }
     sliderTrack.style.transform = `translate3d(-${slideIndex * slideWidth}px, 0px, 0px)`;
 
-    prev.classList.toggle('disabled', slideIndex === 0);
-    next.classList.toggle('disabled', slideIndex === --slides.length);
   },
   swipeStart = function() {
     let evt = getEvent();
