@@ -124,7 +124,7 @@ header{
 .col-img{
 	width: 10rem;
 	object-fit: cover;
-	height:100%;
+	height: 10rem;
 }
 .col-header{
 	font-size: 24px;
@@ -135,6 +135,17 @@ header{
 	.img-del{
 		width: 8rem;
 	}
+}
+.card-trans img{
+	transition: all 1s ease;
+	position: relative;
+	z-index: 400;
+}
+.card-trans img:hover{
+	transition: all .5s ease;
+	transform: scale(2);
+	position: relative;
+	z-index: 444;
 }
 .r{
 	width: 100%;
