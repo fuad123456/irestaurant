@@ -180,24 +180,16 @@ function createItem (){
   title.classList.add('title');
   title.innerHTML = 'title 5';
   item.appendChild(title);
+// let link=document.querySelector('.slider-link')
+// link
   return item;
 }
-// let link =document.querySelectorAll('a');
-// document.querySelectorAll('a').forEach(anchor => {
-//     anchor.addEventListener('click', function (e) {
-//         e.preventDefault();
-//         document.querySelector(this.getAttribute('href')).scrollIntoView({
-//             behavior: 'smooth',
-// 			block: 'start'
-//         });
-//     });
-// });
 let link = document.querySelectorAll('.slide-link');
 
 function addPn(){
 	setTimeout(() => {
 		this.classList.add('pn');
-		},70);
+	},100);
 }
 function remPn(){
 	link.forEach(item => {

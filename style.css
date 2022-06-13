@@ -8,16 +8,14 @@ body{
 	font-size: 16px;
 	color: #333;
 	background: #fafafa;
-
+	scroll-behavior: smooth;
 }
 header{
 	height: 250px;
 	width: inherit;
 	margin: 0 auto;
 }
-.container{
-	border: 1px solid #e5e5e5;
-}
+
 .header{
 	top: 0;
 	background: #fff;
@@ -62,6 +60,9 @@ header{
   pointer-events: none;
   border-radius: 20px;
 }
+/* a{
+	pointer-events: none;
+} */
 
 .pn{
 	pointer-events: none;
