@@ -184,19 +184,39 @@ function createItem (){
 // link
   return item;
 }
-let link = document.querySelectorAll('.slide-link');
+// let link = document.querySelectorAll('.slide-link');
 
-function addPn(){
-	setTimeout(() => {
-		this.classList.add('pn');
-	},100);
-}
-function remPn(){
-	link.forEach(item => {
-		item.classList.remove('pn');
-	});
-}
-link.forEach(anchor => {
-	anchor.addEventListener('mousedown', addPn);
-})
-window.addEventListener('mouseup', remPn);
+// function addPn(){
+// 	setTimeout(() => {
+// 		this.classList.add('pn');
+// 	},80);
+// }
+// function remPn(){
+// 	link.forEach(item => {
+// 		item.classList.remove('pn');
+// 	});
+// }
+// link.forEach(anchor => {
+// 	anchor.addEventListener('mousedown', addPn);
+// })
+// window.addEventListener('mouseup', remPn);
+document.querySelectorAll('li[href^="#"').forEach(link => {
+
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        let href = this.getAttribute('href').substring(1);
+
+        const scrollTarget = document.getElementById(href);
+
+        const topOffset = document.querySelector('.scrollto').offsetHeight;
+        // const topOffset = 0; // если не нужен отступ сверху 
+        const elementPosition = scrollTarget.getBoundingClientRect().top;
+        const offsetPosition = elementPosition - topOffset;
+
+        window.scrollBy({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    });
+});
