@@ -1,6 +1,6 @@
 import data from './data/data.js';
 let datan=data
-console.log(datan);
+// console.log(datan);
 let slider = document.querySelector('.slider'),
   sliderList = slider.querySelector('.slider-list'),
   sliderTrack = slider.querySelector('.slider-track'),
@@ -17,6 +17,7 @@ let slider = document.querySelector('.slider'),
   isScroll = false,
   allowSwipe = true,
   transition = true,
+  allLinks=document.querySelectorAll('li[href^="#"'),
   nextTrf = 0,
   prevTrf = 0,
   lastTrf = (slides.length-1) * slideWidth,
@@ -30,17 +31,18 @@ let slider = document.querySelector('.slider'),
       sliderTrack.style.transition = 'transform .5s';
     }
     sliderTrack.style.transform = `translate3d(-${slideIndex * slideWidth}px, 0px, 0px)`;
-
+	
   },
   swipeStart = function() {
+	
     let evt = getEvent();
 
     if (allowSwipe) {
 
       transition = true;
 
-      nextTrf = (slideIndex + 1) * -slideWidth;
-      prevTrf = (slideIndex - 1) * -slideWidth;
+    //   nextTrf = (slideIndex + 1) * -slideWidth;
+    //   prevTrf = (slideIndex - 1) * -slideWidth;
 
       posInit = posX1 = evt.clientX;
       posY1 = evt.clientY;
@@ -57,7 +59,7 @@ let slider = document.querySelector('.slider'),
     }
   },
   swipeAction = function() {
-
+	allLinks=document.querySelectorAll('li[href^="#"')
     let evt = getEvent(),
       style = sliderTrack.style.transform,
       transform = +style.match(trfRegExp)[0];
@@ -165,11 +167,12 @@ sliderTrack.style.transform = 'translate3d(0px, 0px, 0px)';
 sliderList.classList.add('grab');
 
 sliderTrack.addEventListener('transitionend', () => allowSwipe = true);
-slider.addEventListener('touchstart', swipeStart);
+slider.addEventListener('touchstart', swipeStart, {passive: true});
 slider.addEventListener('mousedown', swipeStart);
 slider.addEventListener('mousedown', addItem);
-slider.addEventListener('touchstart', addItem);
-slider.addEventListener('touchstart', scroll, false);
+slider.addEventListener('touchstart', addItem, {passive: true});
+slider.addEventListener('mousedown', scroll, {passive: true});
+
 let c=1
 function addItem(){
 	if (slideIndex === document.querySelectorAll('.slide').length-3){
@@ -179,7 +182,7 @@ function addItem(){
 		let item = createItem();
 		track.appendChild(item);
 		// setTransform(transform, lastTrf);
-		console.log(item);
+		// console.log(item);
 	  }
 }
 function createItem (){
@@ -201,8 +204,7 @@ function createItem (){
   	title.innerHTML = data.title;
   	item.appendChild(li);
   	item.appendChild(title);
-	// slide()
-	console.log(item);
+	slide()
   	return item;
 }
 function getRandomData(data){
@@ -212,24 +214,30 @@ function getRandomData(data){
 		c++
 	}
 	// let random = Math.floor(Math.random() * data.length);
-	console.log(c);
+	// console.log(c);
 	return data[c];
 }
+function scrollTo(){
+	// e.preventDefault();
+	console.log(this.getAttribute('href'));
+	let href = this.getAttribute('href').substring(1);
+	const scrollTarget = document.getElementById(href);
+	const topOffset = document.querySelector('.scrollto').offsetHeight;
+	// const topOffset = 0; // если не нужен отступ сверху 
+	const elementPosition = scrollTarget.getBoundingClientRect().bottom;
+	const offsetPosition = elementPosition - topOffset;
+	// console.log(offsetPosition);
+	window.scrollBy({
+		top: offsetPosition,
+		behavior: 'smooth'
+	});
+	// link.removeEventListener('click', scroll);
+	console.log(document.querySelectorAll('li[href^="#"').length);
+	// link.removeEventListener('mouseup', d);
+}
 function scroll(){
-	document.querySelectorAll('li[href^="#"').forEach(link => {
-		link.addEventListener('click', function(e) {
-			e.preventDefault();
-			let href = this.getAttribute('href').substring(1);
-			const scrollTarget = document.getElementById(href);
-			const topOffset = document.querySelector('.scrollto').offsetHeight;
-			// const topOffset = 0; // если не нужен отступ сверху 
-			const elementPosition = scrollTarget.getBoundingClientRect().bottom;
-			const offsetPosition = elementPosition - topOffset;
-			window.scrollBy({
-				top: offsetPosition,
-				behavior: 'smooth'
-			});
-		});
+	allLinks.forEach(link => {
+		link.addEventListener('click', scrollTo);
 	});
 }
 scroll()
