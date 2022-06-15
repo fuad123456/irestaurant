@@ -1,0 +1,203 @@
+.swiper {
+	width: 700px;
+	height: 180px;
+  }
+  .swiper-slide {
+	background: #fff;
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	height: 300px;
+	width: 600px;
+	line-height: 300px;
+	  }
+	  *{
+		box-sizing: border-box;
+	}
+	body{
+		margin: 0;
+		padding: 0;
+		font-family: 'Roboto', sans-serif;
+		font-size: 16px;
+		color: #333;
+		background: #fafafa;
+		scroll-behavior: smooth;
+	}
+	header{
+		height: 250px;
+		width: inherit;
+		background-color: #fff !important;
+		width: 100%;
+		/* margin: 0 auto; */
+	}
+	
+	.header{
+		top: 0;
+		background: #fff;
+		box-shadow: 0 0 5px #ccc;
+		position: fixed;
+		z-index: 100;
+	}
+	.wrapper{
+		overflow: hidden;
+		height: 200px;
+	}
+	.section{
+		padding: 35px 0;
+	}
+	.section-title{
+		font-size: 32px;
+		font-weight: bold;
+		margin-bottom: 20px;
+	}
+	.dfc{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.slider {
+	  position: relative;
+	  width: 40em;
+	  height: 200px;
+	
+	  /* Чтобы во время перетаскивания слайда ничего не выделить внутри него */
+	  user-select: none;
+	  /* Чтобы запретить скролл страницы, если мы начали двигать слайдер по оси X */
+	  touch-action: pan-y;
+	}
+	.price{
+		font-size: 1.5em;
+		font-weight: 700;
+		color: red;
+		font-family: 'Montez', cursive;
+	}
+	/* Если где-то внутри слайдера будут изображения,
+	то нужно задать им pointer-events: none,
+	чтобы они не перетаскивались мышью */
+	
+	.img-box{
+		width: 150px;
+		height: 100px;
+		border-radius: 20%;
+		user-select: none;
+	}
+	.img-box img {
+	  /* width:auto; */
+	  width: 150px;
+	  height: 100px;
+	  object-fit: cover;
+	  pointer-events: none;
+	  border-radius: 20px;
+	  user-select: none;
+	}
+	.slider-list {
+	  height: 200px;
+	  overflow: hidden;
+	}
+	
+	.slider-list.grab {
+	  cursor: grab;
+	  height:200px;
+	}
+	
+	.slider-list.grabbing{
+	  cursor: grabbing;
+	  height:200px;
+	}
+	
+	.slider-track {
+	  display: flex;
+	  gap:.2em;
+	}
+	.title{
+		font-size: 1.2em;
+		height:120px;
+	}
+	.slide {
+	  width: 200px;
+	  height: 250px;
+	  /* Чтобы слайды не сжимались */
+	  flex-shrink: 0;
+	  /* Увеличиваем и центрируем цифру внутри слайда */
+	  display: flex;
+	  align-items: center;
+	  flex-direction: column;
+	  justify-content: center;
+	}
+	.swiper-slide{
+		height: 50px;
+	}
+	/* //////////////////////COL-CARDS */
+	.bgcw{
+		background: #fff;
+	}
+	img.col-img{
+		width: 6rem;
+		height: 6rem;
+		object-fit: cover;
+	}
+	.col-header{
+		font-size: 24px;
+		color: #000;
+		text-align: center;
+	}
+	.card-trans img{
+		transition: all .5s ease;
+		position: relative;
+		z-index: 400;
+		display: block;
+	}
+	.card-trans img:hover{
+		transition: all .5s ease;
+		transform: scale(1.7);
+		position: relative;
+		z-index: 444;
+	}
+	li{
+		list-style: none;
+	}
+	.bd{
+		border: 1px solid #ccc;
+	}
+	@media screen and (max-width: 768px){
+		img.col-img{
+			width: 5rem;
+			height: 5rem;
+		}
+		.card-trans img:hover{
+			transition: all .5s ease;
+			transform: translateX(30px) translateY(25px) scale(1.6);
+			position: relative;
+			z-index: 444;
+		}
+		.price{
+			font-size: 1em;
+		}
+		.img-box img{
+			width: 130px;
+			height: 110px;
+		}
+	}
+	@media screen and (max-width: 576px){
+		img.col-img{
+			width: 6rem;
+			height: 6rem;
+		}
+		.card-trans img:hover{
+			transition: all .5s ease;
+			transform: translateX(35px) translateY(35px) scale(2);
+			position: relative;
+			z-index: 444;
+		}
+		.img-box{
+			height: 70px;
+		}
+		.img-box img{
+			width: 110px;
+			height: 90px;
+		}
+		.title{
+			height: 150px;
+		}
+	}
