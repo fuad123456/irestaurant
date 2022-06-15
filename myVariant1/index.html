@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<!-- <link rel="stylesheet" href="style.css"> -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<style>
+		body{
+			margin: 0;
+			padding: 0;
+			font-family: 'Roboto', sans-serif;
+			font-size: 16px;
+			color: #333;
+			background: #fafafa;
+			scroll-behavior: smooth;
+		}
+		header{
+			height: 250px;
+			width: inherit;
+			margin: 0 auto;
+		}
+		
+		.header{
+			top: 0;
+			background: #fff;
+			box-shadow: 0 0 5px #ccc;
+			position: fixed;
+		}
+		.wrapper{
+			overflow: hidden;
+			height: 200px;
+		}
+		.section{
+			padding: 35px 0;
+		}
+		.section-title{
+			font-size: 32px;
+			font-weight: bold;
+			margin-bottom: 20px;
+		}
+		.dfc{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.slider {
+		  position: relative;
+		  width: 40em;
+		  height: 200px;
+		
+		  /* Чтобы во время перетаскивания слайда ничего не выделить внутри него */
+		  user-select: none;
+		  /* Чтобы запретить скролл страницы, если мы начали двигать слайдер по оси X */
+		  touch-action: pan-y;
+		}
+		.price{
+			font-size: 1.5em;
+			font-weight: 700;
+			color: red;
+			font-family: 'Montez', cursive;
+		}
+		/* Если где-то внутри слайдера будут изображения,
+		то нужно задать им pointer-events: none,
+		чтобы они не перетаскивались мышью */
+		.img-box{
+			width: 150px;
+			height: 100px;
+			border-radius: 20%;
+			user-select: none;
+		}
+		.img-box img {
+		  /* width:auto; */
+		  width: 150px;
+		  height: 100px;
+		  object-fit: cover;
+		  pointer-events: none;
+		  border-radius: 20px;
+		  user-select: none;
+		}
+		.slider-list {
+		  height: 200px;
+		  overflow: hidden;
+		}
+		.slider-list.grab {
+		  cursor: grab;
+		  height:200px;
+		}
+		.slider-list.grabbing{
+		  cursor: grabbing;
+		  height:200px;
+		}
+		.slider-track {
+		  display: flex;
+		  gap:.2em;
+		}
+		.title{
+			font-size: 1.2em;
+		}
+		.slide {
+		  width: 200px;
+		  height: 250px;
+		  /* Чтобы слайды не сжимались */
+		  flex-shrink: 0;
+		  /* Увеличиваем и центрируем цифру внутри слайда */
+		  display: flex;
+		  align-items: center;
+		  flex-direction: column;
+		  justify-content: center;
+		}
+
+		img.col-img{
+			width: 6rem;
+			height: 6rem;
+			object-fit: cover;
+		}
+		.col-header{
+			font-size: 24px;
+			color: #000;
+			text-align: center;
+		}
+		.card-trans img{
+			transition: all .5s ease;
+			position: relative;
+			z-index: 400;
+			display: block;
+		}
+		.card-trans img:hover{
+			transition: all .5s ease;
+			transform: scale(1.7);
+			position: relative;
+			z-index: 444;
+		}
+		li{
+			list-style: none;
+		}
+		@media screen and (max-width: 768px){
+			img.col-img{
+				width: 5rem;
+				height: 5rem;
+			}
+			.card-trans img:hover{
+				transition: all .5s ease;
+				transform: translateX(30px) translateY(25px) scale(1.6);
+				position: relative;
+				z-index: 444;
+			}
+			.price{
+				font-size: 1em;
+			}
+		}
+		@media screen and (max-width: 576px){
+			img.col-img{
+				width: 6rem;
+				height: 6rem;
+			}
+			.card-trans img:hover{
+				transition: all .5s ease;
+				transform: translateX(35px) translateY(35px) scale(2);
+				position: relative;
+				z-index: 444;
+			}
+		}
+	</style>
+	<script defer>
+
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<header class="">
+			<div class="header fixed-top dfc">
+				<div class="wrapper">
+					<div class="slider">
+						<div class="slider-list">
+							<div class="slider-track scrollto">
+								<div class="slide">
+									<li href="#ad1" class="slide-link ">
+										<div class="img-box" href="#ad1"><img src="img/platters/platter1.jpg"></div>
+									</li>
+									<div class="title">Platters</div>
+								</div>
+
+								<div class="slide">
+									<li href="#ad2" class="slide-link ">
+										<div class="img-box"><img src="img/colApp/cApp1.jpg" alt=""></div>
+									</li>
+									<div class="title">Cold Appetizers</div>
+								</div>
+								<div class="slide">
+									<li href="#ad3" class="slide-link ">
+										<div class="img-box"><img src="img/lemonade/lemonade1.jpg" alt=""></div>
+									</li>
+									<div class="title">Lemonade</div>
+								</div>
+								<div class="slide">
+									<li href="#ad4" class="slide-link ">
+										<div class="img-box"><img src="img/coldDrinks/cold0.jpg" alt=""></div>
+									</li>
+									<div class="title">Cold Drinks</div>
+								</div>
+								<div class="slide">
+									<li href="#ad5" class="slide-link ">
+										<div class="img-box"><img src="img/hotDrink/hotDrink1.jpg" alt=""></div>
+									</li>
+									<div class="title">Hot Drinks</div>
+								</div>
+								<div class="slide">
+									<li href="#ad6" class="slide-link ">
+										<div class="img-box"><img src="img/pizza/pizza1.jpg" alt=""></div>
+									</li>
+									<div class="title">Pizza</div>
+								</div>
+								<div class="slide">
+									<li href="#ad7" class="slide-link ">
+										<div class="img-box"><img src="img/salad/salad1.jpg" alt=""></div>
+									</li>
+									<div class="title">Salad</div>
+								</div>
+								<div class="slide">
+									<li href="#ad8" class="slide-link ">
+										<div class="img-box"><img src="img/pasta/pasta1.jpg" alt=""></div>
+									</li>
+									<div class="title">Pasta</div>
+								</div>
+								<div class="slide">
+									<li href="#ad9" class="slide-link ">
+										<div class="img-box"><img src="img/sushi/sushi1.jpg" alt=""></div>
+									</li>
+									<div class="title">Sushi</div>
+								</div>
+								<div class="slide">
+									<li href="#ad10" class="slide-link ">
+										<div class="img-box"><img src="img/hotApp/hApp1.jpg" alt=""></div>
+									</li>
+									<div class="title">Hot Appetizers</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+	<div class="container">
+		<section class="section">
+			<h2 class="section-title text-center" id="ad1">Platters</h2>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/platters/platter1.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/platters/platter2.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/platters/platter3.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</section>
+		<section class="section">
+			<h2 class="section-title text-center" id="ad2">Cold Appetizers</h2>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/colApp/cApp1.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/colApp/cApp2.webp" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/colApp/cApp3.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</section>
+		<section class="section">
+			<h2 class="section-title text-center" id="ad3">Lemonade</h2>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/lemonade/lemonade1.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/lemonade/lemonade2.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/lemonade/lemonade3.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</section>
+		<section class="section">
+			<h2 class="section-title text-center" id="ad4">Cold Drinks</h2>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/coldDrinks/cold0.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/coldDrinks/cold1.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</section>
+		<section class="section">
+			<h2 class="section-title text-center" id="ad5">Hot Drinks</h2>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/hotDrink/hotDrink1.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/hotDrink/hotDrink2.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/hotDrink/hotDrink3.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+			</div>
+		</section>
+		<section class="section">
+			<h2 class="section-title text-center" id="ad6">Pizza</h2>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/pizza/pizza1.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/pizza/pizza2.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</section>
+		<section class="section">
+			<h2 class="section-title text-center" id="ad7">Salad</h2>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/salad/salad1.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/salad/salad2.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/salad/salad3.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</section>
+		<section class="section">
+			<h2 class="section-title text-center" id="ad8">Pasta</h2>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/pasta/pasta1.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/pasta/pasta2.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</section>
+		<section class="section">
+			<h2 class="section-title text-center" id="ad9">Sushi</h2>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/sushi/sushi1.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/sushi/sushi2.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/sushi/sushi3.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</section>
+		<section class="section">
+			<h2 class="section-title text-center" id="ad10">Hot Appetizers</h2>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/hotApp/hApp1.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/hotApp/hApp2.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/hotApp/hApp3.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			<div class="card mb-3 shadow p-2">
+				<div class="row gx-2 align-items-center">
+				  <div class="col-auto card-trans">
+					  <div class="dfc w-img p-2">
+						  <img src="img/hotApp/hApp4.jpg" class="rounded-circle col-img" alt="...">
+					  </div>
+				  </div>
+				  <div class="col">
+					<div class="card-body d-flex flex-column justify-content-between p-0">
+					  <h5 class="card-title">Card title</h5>
+					  <div class="card-desc">This is a wider card with supporting text </div>
+					  <div class="d-flex justify-content-between">
+						<div class="price">99$</div>
+						<div class="price"><button class="btn btn-primary btn-sm">Add</button></div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<script>
+		
+		var data=[
+		{
+			"href":"#ad1",
+			"title":"Platters",
+			"img":"img/platters/platter1.jpg",
+			"text":"Text of the first slide",
+		},
+		{
+			"href":"#ad10",
+			"title":"Hot Appetizers",
+			"img":"img/hotApp/hApp1.jpg",
+			"text":"Text of second slide"
+		},
+		{
+			"href":"#ad2",
+			"title":"Cold Appetizers",
+			"img":"img/colApp/cApp1.jpg",
+			"text":"Text of third slide"
+		},
+		{
+			"href":"#ad3",
+			"title":"Lemonade",
+			"img":"img/lemonade/lemonade1.jpg",
+			"text":"Text of fourth slide"
+		},
+		{
+			"href":"#ad4",
+			"title":"Cold Drinks",
+			"img":"img/coldDrinks/cold1.jpg",
+			"text":"Text of fifth slide"
+		},
+		{
+			"href":"#ad6",
+			"title":"Pizza",
+			"img":"img/pizza/pizza1.jpg",
+			"text":"Text of eighth slide"
+		},
+		{
+			"href":"#ad7",
+			"title":"Salad",
+			"img":"img/salad/salad1.jpg",
+			"text":"Text of ninth slide"
+		},
+		{
+			"href":"#ad8",
+			"title":"Pasta",
+			"img":"img/pasta/pasta1.jpg",
+			"text":"Text of tenth slide"
+		},
+		{
+			"href":"#ad9",
+			"title":"Sushi",
+			"img":"img/sushi/sushi1.jpg",
+			"text":"Text of eleventh slide"
+		},
+		{
+			"href":"#ad5",
+			"title":"Hot Drinks",
+			"img":"img/hotDrink/hotDrink1.jpg",
+			"text":"Text of twelfth slide"
+		}
+	]
+console.log(data);
+let slider = document.querySelector('.slider'),
+  sliderList = slider.querySelector('.slider-list'),
+  sliderTrack = slider.querySelector('.slider-track'),
+  slides = slider.querySelectorAll('.slide'),
+  slideWidth = slides[0].offsetWidth,
+  slideIndex = 0,
+  posInit = 0,
+  posX1 = 0,
+  posX2 = 0,
+  posY1 = 0,
+  posY2 = 0,
+  posFinal = 0,
+  isSwipe = false,
+  isScroll = false,
+  allowSwipe = true,
+  transition = true,
+  allLinks=document.querySelectorAll('li[href^="#"'),
+  nextTrf = 0,
+  prevTrf = 0,
+  lastTrf = (slides.length-1) * slideWidth,
+  posThreshold = slides[0].offsetWidth * 0.2,
+  trfRegExp = /([-0-9.]+(?=px))/,
+  getEvent = function() {
+    return (event.type.search('touch') !== -1) ? event.touches[0] : event;
+  },
+  slide = function() {
+    if (transition) {
+      sliderTrack.style.transition = 'transform .5s';
+    }
+    sliderTrack.style.transform = `translate3d(-${slideIndex * slideWidth}px, 0px, 0px)`;
+	
+  },
+  swipeStart = function() {
+	
+    let evt = getEvent();
+
+    if (allowSwipe) {
+
+      transition = true;
+
+      posInit = posX1 = evt.clientX;
+      posY1 = evt.clientY;
+
+      sliderTrack.style.transition = '';
+
+      document.addEventListener('touchmove', swipeAction);
+      document.addEventListener('mousemove', swipeAction);
+      document.addEventListener('touchend', swipeEnd);
+      document.addEventListener('mouseup', swipeEnd);
+
+      sliderList.classList.remove('grab');
+      sliderList.classList.add('grabbing');
+    }
+  },
+  swipeAction = function() {
+	allLinks=document.querySelectorAll('li[href^="#"')
+    let evt = getEvent(),
+      style = sliderTrack.style.transform,
+      transform = +style.match(trfRegExp)[0];
+
+    posX2 = posX1 - evt.clientX;
+    posX1 = evt.clientX;
+
+    posY2 = posY1 - evt.clientY;
+    posY1 = evt.clientY;
+    // определение действия свайп или скролл
+    if (!isSwipe && !isScroll) {
+      let posY = Math.abs(posY2);
+      if (posY > 7 || posX2 === 0) {
+        isScroll = true;
+        allowSwipe = false;
+      } else if (posY < 7) {
+        isSwipe = true;
+      }
+    }
+
+    if (isSwipe) {
+		if (slideIndex === 0) {
+			if (posInit < posX1) {
+			  setTransform(transform, 0);
+			  return;
+			} else {
+			  allowSwipe = true;
+			}
+		  }
+		  // запрет ухода вправо на последнем слайде
+		  if (slideIndex === document.querySelectorAll('.slides').length-1) {
+			if (posInit > posX1) {
+			  setTransform(transform, lastTrf);
+			  return;
+			} else {
+			  allowSwipe = true;
+			}
+		  }
+      sliderTrack.style.transform = `translate3d(${transform - posX2}px, 0px, 0px)`;
+    }
+
+  },
+  swipeEnd = function() {
+    posFinal = posInit - posX1;
+
+    isScroll = false;
+    isSwipe = false;
+
+    document.removeEventListener('touchmove', swipeAction);
+    document.removeEventListener('mousemove', swipeAction);
+    document.removeEventListener('touchend', swipeEnd);
+    document.removeEventListener('mouseup', swipeEnd);
+
+    sliderList.classList.add('grab');
+    sliderList.classList.remove('grabbing');
+
+    if (allowSwipe) {
+      if (Math.abs(posFinal) > posThreshold) {
+        if (posInit < posX1) {
+          slideIndex--;
+        } else if (posInit > posX1) {
+          slideIndex++;
+        }
+      }
+
+      if (posInit !== posX1) {
+        allowSwipe = false;
+        slide();
+      } else {
+        allowSwipe = true;
+      }
+
+    } else {
+      allowSwipe = true;
+    }
+
+  },
+  setTransform = function(transform, comapreTransform) {
+    if (transform >= comapreTransform) {
+      if (transform > comapreTransform) {
+        sliderTrack.style.transform = `translate3d(${comapreTransform}px, 0px, 0px)`;
+      }
+    }
+    allowSwipe = false;
+  },
+  reachEdge = function() {
+    transition = false;
+    swipeEnd();
+    allowSwipe = true;
+  };
+
+sliderTrack.style.transform = 'translate3d(0px, 0px, 0px)';
+sliderList.classList.add('grab');
+
+sliderTrack.addEventListener('transitionend', () => allowSwipe = true);
+slider.addEventListener('touchstart', swipeStart, {passive: true});
+slider.addEventListener('mousedown', swipeStart);
+slider.addEventListener('mousedown', addItem);
+slider.addEventListener('touchstart', addItem, {passive: true});
+slider.addEventListener('mousedown', scroll, {passive: true});
+
+let c=1
+function getRandomData(data){
+	if(c>=data.length-1){
+		c=0
+	}else{
+		c++
+	}
+	return data[c];
+}
+
+
+function createItem (d){
+	let data1= getRandomData(data)
+	console.log(data1)
+	let item = document.createElement('div');
+  	item.classList.add('slide');
+  	let box= document.createElement('div');
+  	box.classList.add('img-box');
+  	let img = document.createElement('img');
+  	img.src = data1.img;
+	let li = document.createElement('li');
+	li.classList.add('slide-link');
+	li.setAttribute('href', data1.href);
+  	box.appendChild(img);
+    li.appendChild(box);
+  	item.appendChild(li);
+  	let title = document.createElement('div')
+  	title.classList.add('title');
+  	title.innerHTML = data1.title;
+  	item.appendChild(li);
+  	item.appendChild(title);
+	slide()
+  	return item;
+}
+function addItem(){
+	if (slideIndex === document.querySelectorAll('.slide').length-3){
+		if (posInit > posX1) {
+		}
+		let track=document.querySelector('.slider-track');
+		let item = createItem();
+		track.appendChild(item);
+	  }
+}
+
+
+function scrollTo(){
+	// e.preventDefault();
+	console.log(this.getAttribute('href'));
+	let href = this.getAttribute('href').substring(1);
+	const scrollTarget = document.getElementById(href);
+	const topOffset = document.querySelector('.scrollto').offsetHeight;
+	// const topOffset = 0; // если не нужен отступ сверху 
+	const elementPosition = scrollTarget.getBoundingClientRect().bottom;
+	const offsetPosition = elementPosition - topOffset;
+	// console.log(offsetPosition);
+	window.scrollBy({
+		top: offsetPosition,
+		behavior: 'smooth'
+	});
+	console.log(document.querySelectorAll('li[href^="#"').length);
+}
+function scroll(){
+	allLinks.forEach(link => {
+		link.addEventListener('click', scrollTo);
+	});
+}
+scroll()
+	</script>
+	<!-- <script src="index.js" type="module"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>
